@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('input').on('click', function(){
+                $("<img></img>",{
+                    src:'./lion.jpg',
+                    width:'50',
+                    height:'50',
+                    click:function(){
+                        $(this).css('border', '2px solid red')
+                    }
+                }).appendTo($('div'));
+
+            });
+           
+        });
+    </script>
+</head>
+<body>
+    <input type="button" value="클릭하여 이미지 생성">
+    <div></div>
+</body>
+</html>

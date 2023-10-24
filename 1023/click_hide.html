@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+    //기본 plane(javascript)객체와 j쿼리 객체가 사용할 수 있는 속성 및 메소드가 구분되어 있음
+
+       function fnc(p_this){ // 원시 dom 객체(원래 javascript의 객체)
+        //원형에는 j 쿼리 메소드 사용 불가(j쿼리 객체에는 원형의 속성, 메소드 사용 불가)
+            // console.log($(p_this).text());  //j쿼리 방식
+            // console.log(p_this.innerText); //자바스크립트 방식
+        //클릭하면 hide하는 기능
+        $(p_this).hide();
+        }
+    // window.onload = function();
+    document.addEventListener('DOMContentLoaded', function(){
+        // console.log(document.querySelectorAll('h4').length) //전체 h4를 선택하여 8개 반환
+        // console.log(document.querySelectorAll('#js h4').length) //div의 하위 h4만 선택해서 4개 반환
+        
+        let v_jsH4 = document.querySelectorAll('#js h4');
+        let = v_count = 0;
+        let v_btn = document.querySelector('button'); 
+        for(let i = 0; i < v_jsH4.length; i++){
+            v_jsH4[i].addEventListener('click', function(){
+                // alert(this.innerText);
+
+                this.style.display = "none";
+                v_count++;
+                //대상 갯수와 숨김처리된 갯수가 같아질 때 버튼이 생기도록
+                if(v_jsH4.length == v_count){
+                    v_btn.style.display = "inline"; //버튼은 inline 요소 
+                    v_count = 0;
+                }
+
+            });
+
+        }
+
+        v_btn.addEventListener('click', function(){
+            //버튼 눌렀을 때 숨김 처리된 모든 h4 요소 보여주기
+            for(let i = 0; i< v_jsH4.length; i++){
+                v_jsH4[i].style.display = "block";
+            }
+            //버튼은 다시 숨기기
+            this.style.display="none";
+        });
+        $('#jq h4').on('click', function(){
+            // alert($(this).text());
+            $(this).hide();
+
+            //숨겨진 버튼 보이기
+            if($('#jq h4:visible').length == 0){
+                $('#jq button').css('display','inline');
+            }
+        });
+        
+        $('#jq button').on('click', function(){
+            $('#jq h4').show();
+            $(this).css('display','none');
+        });
+        
+    });
+        //문서 준비코드 end
+
+    </script>
+    <style>
+        button{
+            display: none;
+        }
+    </style>
+<body>
+     <div id="js">
+        <h4> JavaScript1</h4>
+        <h4> JavaScript2</h4>
+        <h4> JavaScript3</h4>
+        <h4> JavaScript4</h4>
+        <button>SHOW</button>
+    </div>
+    
+    <hr>
+    
+    <div id="jq">
+        <h4> JavaQuery1</h4>
+        <h4> JavaQuery2</h4>
+        <h4> JavaQuery3</h4>
+        <h4> JavaQuery4</h4>
+        <button>SHOW</button>
+    </div>
+
+    <hr>
+
+
+    <h4 onclick="fnc(this)">click hide 1</h4>
+    <h4 onclick="fnc(this)">click hide 2</h4>
+    <h4 onclick="fnc(this)">click hide 3</h4>
+    <h4 onclick="fnc(this)">click hide 4</h4>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            $('input').eq(0).on('click', function(){
+                //jQuery 방식으로 요소 생성하기 - 한 문자열에 요소의 모든 정보 담기
+                let v_tagP = $("<p title='Hello' onclick='f_click(this)'> Hello jQuery</p>");
+                $('div').append(v_tagP); //태그를 파싱해서 화면에 반영시킴
+                // $('div').appendChild(v_tagP); //DOM 객체 대상으로만 가능
+                // $('div').html(v_tagP); //1회만 화면에 추가
+                //부모.append(자식)
+            });
+            //jQuery 방식으로 요소 생성하기 - 요소만 생성 후 속성을 객체 형태로 따로 지정
+           
+            $('button').on('click', function(){
+                $("<p></p>",{
+                    title:'★',
+                    text:'Hello!!! jQuery',
+                    click:function(){ // 글자를 클릭해야 함수 실행
+                    // onclick:function(){ 버튼이 클릭됐을때 이미 함수 실행
+                        $(this).css('color', 'orange').css('textShadow', '2px 2px 2px gold')
+                    }
+                }).appendTo($('div')); //자식.appendTo(부모)
+            });
+        });
+
+
+        function f_click(p_this){
+            $(p_this).css('color', 'orange').css('textShadow', '2px 2px 2px red')
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" value="문자열로 일괄 생성">
+    <button>요소만 생성 후 속성 지정</button>
+
+    <div></div>
+</body>
+</html>
